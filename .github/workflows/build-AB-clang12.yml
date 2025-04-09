@@ -73,7 +73,7 @@ jobs:
       if: env.ENABLE_KERNELSU == 'true'
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
-        curl -LSs "https://raw.githubusercontent.com/jqtmviyu/KernelSU/095/kernel/setup.sh" | bash -s ${{ env.KERNELSU_TAG }}
+        curl -LSs "https://raw.githubusercontent.com/ShirkNeko/SukiSU-Ultra/main/kernel/setup.sh" | bash -s ${{ env.KERNELSU_TAG }}
 
     - name: 开启kvm
       if: env.ENABLE_KVM == 'true'
@@ -127,14 +127,14 @@ jobs:
         rm -rf AnyKernel3/ramdisk AnyKernel3/modules AnyKernel3/patch
 
     - name: 上传内核
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ env.KERNEL_ZIP_NAME }}
         path: kernel_workspace/AnyKernel3/*
 
     - name: 上传dtbo镜像
       if: env.DTBO_EXSIT == 'true' && env.NEED == 'true'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: dtbo-image
         path: kernel_workspace/android-kernel/out/arch/arm64/boot/dtbo.img
